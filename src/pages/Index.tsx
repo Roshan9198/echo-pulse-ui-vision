@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import VoiceButton from '@/components/VoiceButton';
+import BlobVoiceButton from '@/components/BlobVoiceButton';
 import TranscriptionText from '@/components/TranscriptionText';
 import WaveformAnimation from '@/components/WaveformAnimation';
 import ControlButtons from '@/components/ControlButtons';
@@ -48,13 +48,13 @@ const Index = () => {
       <div className="w-full max-w-xl bg-gradient-to-b from-white to-gray-50 rounded-3xl shadow-lg p-8 flex flex-col items-center">
         <h1 className="text-3xl font-light text-gray-800 mb-12">Voice Assistant</h1>
         
-        {/* Main voice button */}
-        <div className="mb-12 relative">
-          <VoiceButton isListening={isListening} onClick={handleVoiceButtonClick} />
+        {/* Main voice button (now blob) */}
+        <div className="mb-8 relative">
+          <BlobVoiceButton isListening={isListening} onClick={handleVoiceButtonClick} />
         </div>
         
         {/* Waveform animation */}
-        <div className="mb-8">
+        <div className="mb-8 h-16">
           <WaveformAnimation isActive={isListening && !isMuted} />
         </div>
         
