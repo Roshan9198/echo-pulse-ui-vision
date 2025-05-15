@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -97,5 +91,36 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .typing-container {
+    display: inline-block;
+  }
+  
+  .typing-text {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 0.15em solid #333;
+    margin: 0;
+    letter-spacing: 0.05em;
+    animation: typing 3.5s steps(40, end), blink 1s step-end infinite;
+  }
+  
+  .wave-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    gap: 4px;
+  }
+  
+  .wave-bar {
+    width: 4px;
+    height: 100%;
+    background-color: #D3E4FD;
+    border-radius: 2px;
+    transform-origin: center;
   }
 }
