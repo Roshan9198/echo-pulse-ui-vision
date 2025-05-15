@@ -15,6 +15,56 @@ interface UseVoiceRecognitionReturn {
   toggleMute: () => void;
 }
 
+// Add TypeScript declarations for browser Speech Recognition API
+interface SpeechRecognitionEvent extends Event {
+  results: SpeechRecognitionResultList;
+  resultIndex: number;
+  error?: any;
+}
+
+interface SpeechRecognitionResultList {
+  length: number;
+  item(index: number): SpeechRecognitionResult;
+  [index: number]: SpeechRecognitionResult;
+}
+
+interface SpeechRecognitionResult {
+  isFinal: boolean;
+  length: number;
+  item(index: number): SpeechRecognitionAlternative;
+  [index: number]: SpeechRecognitionAlternative;
+}
+
+interface SpeechRecognitionAlternative {
+  transcript: string;
+  confidence: number;
+}
+
+interface SpeechRecognition extends EventTarget {
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  start(): void;
+  stop(): void;
+  abort(): void;
+  onresult: (event: SpeechRecognitionEvent) => void;
+  onerror: (event: SpeechRecognitionEvent) => void;
+  onend: () => void;
+  onstart: () => void;
+}
+
+// Add TypeScript global declarations
+declare global {
+  interface Window {
+    SpeechRecognition: {
+      new(): SpeechRecognition;
+    };
+    webkitSpeechRecognition: {
+      new(): SpeechRecognition;
+    };
+  }
+}
+
 const useVoiceRecognition = ({
   onTranscript,
   onFinish,
@@ -128,11 +178,3 @@ const useVoiceRecognition = ({
 };
 
 export default useVoiceRecognition;
-
-// Add TypeScript declarations for browser Speech Recognition API
-declare global {
-  interface Window {
-    SpeechRecognition: typeof SpeechRecognition;
-    webkitSpeechRecognition: typeof SpeechRecognition;
-  }
-}
